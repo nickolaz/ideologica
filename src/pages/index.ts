@@ -1,0 +1,15 @@
+export { default as LoginPage }  from './loginPage';
+export { default as HomePage }  from './homePage';
+export { default as NotFoundPage }  from './notFoundPage';
+export { default as SemaforoPage }  from './semaforo/semaforoPage';
+export { default as OngPage }  from './ong/OngPage';
+export { default as CreateOngPage }  from './ong/createOngPage';
+export { default as EditOngPage }  from './ong/editOngPage';
+export { default as ViewOngPage }  from './ong/viewOngPage';
+export { default as CreateSemaforoPage }  from './semaforo/createSemaforoPage';
+export { default as EditSemaforoPage }  from './semaforo/editSemaforoPage';
+export { default as ViewSemaforoPage }  from './semaforo/viewSemaforoPage';
+export { default as ReportesPage }  from './reportes/reportesPage';
+export { default as ReportesCantPage }  from './reportes/reportesCantPage';
+export { default as ReportesDirPage }  from './reportes/reportesDirPage';
+export { default as ReportesVinPage }  from './reportes/reportesVinPage';
