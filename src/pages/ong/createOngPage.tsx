@@ -38,10 +38,10 @@ export default function CreateOngPage(props:any) {
     };
 
     return (
-        <div>
+        <div style={{width: '100%'}}>
             <Header history={props.history}/>
-            <h2 style={{display:'flex',fontSize:'4rem',marginBottom:'auto'}}>
-                <b style={{marginRight:'auto',marginLeft:'auto'}}>Crear ONG</b>
+            <h2 style={{display:'flex',fontSize:'3rem',marginBottom:'auto'}}>
+                <b style={{marginRight:'auto',marginLeft:'auto',textAlign:'center'}}>Crear ONG</b>
             </h2>
             <form className={classes.form} noValidate autoComplete="off" >
                 <TextField label="Nombre" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setNombre(event.target.value)}}/>

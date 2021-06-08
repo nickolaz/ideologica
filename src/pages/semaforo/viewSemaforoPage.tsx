@@ -6,7 +6,6 @@ import { getOngs } from '../../actions/Ong.actions';
 import { RootState } from '../../store/store';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { editSemaforo } from '../../actions/semaforo.actions';
 
 export default function ViewSemaforoPage(props:any) {
     const classes = useStyles();
@@ -43,47 +42,12 @@ export default function ViewSemaforoPage(props:any) {
     useEffect(() => {
         dispatch(getOngs());
     },[ongs.length,investigaciones.length]);
-
-    const create = () => {
-        let semaforo = {
-            ong : ong,
-            ideologia : ideologia,
-            publicaciones : publicaciones,
-            investigacion : [
-                {
-                    ong : ong,
-                    pregunta : "Es marxista",
-                    respuesta : marx?'Si':'NO'
-                },
-                {
-                    ong : ong,
-                    pregunta : "Pro aborto",
-                    respuesta : aborto?'Si':'NO'
-                },
-                {
-                    ong : ong,
-                    pregunta : "Agenda Globalista",
-                    respuesta : globalista?'Si':'NO'
-                },
-                {
-                    ong : ong,
-                    pregunta : "Ideologia de Género",
-                    respuesta : genero?'Si':'NO'
-                },
-            ],
-            relacion : relacionOng,
-            fuente : fuente,
-        };
-        console.log("semafoto rq: ",semaforo);
-        dispatch(editSemaforo(semaforo));
-        props.history.replace("/semaforo");
-    };
     
     return (
-        <div>
+        <div style={{width: '100%'}}>
             <Header history={props.history}/>
-            <h2 style={{display:'flex',fontSize:'4rem',marginBottom:'auto'}}>
-                <b style={{marginRight:'auto',marginLeft:'auto'}}>Semaforo</b>
+            <h2 style={{display:'flex',fontSize:'3rem',marginBottom:'auto'}}>
+                <b style={{marginRight:'auto',marginLeft:'auto',textAlign:"center"}}>Semaforo</b>
             </h2>
             <form className={classes.form} noValidate autoComplete="off" >
                 <FormControl className={classes.txt}>

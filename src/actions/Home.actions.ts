@@ -12,6 +12,14 @@ export const login = (loginDto: any,history:any) => {
                 dispatch({
                     type: HomeActionsEnum.login,
                     payload: resp.headers.authorization
+                });
+                dispatch({
+                    type: HomeActionsEnum.getType,
+                    payload: resp.data.tipo
+                });
+                dispatch({
+                    type: HomeActionsEnum.getUserLogeado,
+                    payload: loginDto.user
                 });           
                 history.push("/home")
             }

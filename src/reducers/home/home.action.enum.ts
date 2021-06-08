@@ -9,6 +9,9 @@ enum HomeActionsEnum {
     getCant = '[Reporte] obtener cant Ong por Ideologia',
     getDir = '[Reporte] obtener nombres de directores de Ong',
     getVin = '[Reporte] obtener vinculacion entre las Ong',
+    getType = '[Auth] Tipo de Usuario',
+    getUsers = '[Users] obtener usuarios',
+    getUserLogeado = '[Auth] usuario logeador',
 }
 
 export default HomeActionsEnum;

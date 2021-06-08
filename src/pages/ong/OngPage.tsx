@@ -8,6 +8,7 @@ import { error, labelerror } from '../../actions/Home.actions';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import { deleteOngs, getOngs } from '../../actions/Ong.actions';
+import SearchBar from "material-ui-search-bar";
 
 export default function OngPage (props:any) {
     const dispatch = useDispatch();
@@ -16,9 +17,12 @@ export default function OngPage (props:any) {
     const err = useSelector((state : RootState) => state.home.error);
     const labelErr = useSelector((state : RootState) => state.home.labelError);
     const [open, setOpen] = useState(false);
+    const [searched, setSearched] = useState<string>("");
+    const [rowOng,setRowOng] = useState<any>();
 
     useEffect(() => {
         dispatch(getOngs());
+        if(ongs) setRowOng(ongs);
     },[ongs.length]);
 
     const columns: any[] = [
@@ -50,19 +54,42 @@ export default function OngPage (props:any) {
         setOpen(false);
         setrow(null);
     };
+
+    const requestSearch = (searchedVal: string) => {
+        const filteredRows = ongs.filter((row) => {
+            let search = row?.nombre?.toLowerCase().includes(searchedVal.toLowerCase()) || row?.direccion?.toLowerCase().includes(searchedVal.toLowerCase()) ||
+                row?.telefono?.toLowerCase().includes(searchedVal.toLowerCase()) || row?.mail?.toLowerCase().includes(searchedVal.toLowerCase()) ||
+                row?.director?.toLowerCase().includes(searchedVal.toLowerCase()) || row?.insta?.toLowerCase().includes(searchedVal.toLowerCase()) ||
+                row?.twitter?.toLowerCase().includes(searchedVal.toLowerCase()) || row?.contacto?.toLowerCase().includes(searchedVal.toLowerCase()) ||
+                row?.web?.toLowerCase().includes(searchedVal.toLowerCase());
+            return search;
+        });
+        setRowOng(filteredRows);
+    };
+
+    const cancelSearch = () => {
+        setSearched("");
+        requestSearch(searched);
+    };
+
     return (
-        <div>
+        <div style={{width: '100%'}}>
             <Header history={props.history}/>
-            <h2 style={{display:'flex',fontSize:'4rem',marginBottom:'auto'}}>
-                <b style={{marginRight:'auto',marginLeft:'auto'}}>ONGs</b>
+            <h2 style={{display:'flex',fontSize:'3rem',marginBottom:'auto'}}>
+                <b style={{marginRight:'auto',marginLeft:'auto',textAlign:'center'}}>ONGs</b>
             </h2>
             <Snackbar open={err} autoHideDuration={6000} onClose={handleClose}>
                 <MuiAlert elevation={6} variant="filled" onClose={handleClose} severity="error">
                     {labelErr}
                 </MuiAlert>
             </Snackbar>
+            <SearchBar
+                value={searched}
+                onChange={(searchVal) => requestSearch(searchVal)}
+                onCancelSearch={() => cancelSearch()}
+            />
             <div style={{ height: 400, width: '100%' , marginTop: '1vh'}}>
-                <DataGrid rows={ongs} columns={columns} pageSize={5} onRowSelected={(e)=>{ setrow(e); }} />
+                <DataGrid rows={rowOng?rowOng:ongs} columns={columns} pageSize={5} onRowSelected={(e)=>{ setrow(e); }} />
             </div>
             <div style={{marginTop:'1%'}}>
                 <Button variant="contained" color="primary" style={{ marginLeft:'1%',marginRight:'1%'}} onClick={()=>{ props.history.replace("/ong/new")}}> Crear </Button>

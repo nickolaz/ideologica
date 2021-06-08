@@ -33,10 +33,10 @@ export default function ReportesDirPage (props:any) {
     };
 
     return (
-        <div>
+        <div style={{width: '100%'}}>
             <Header history={props.history}/>
             <h1 style={{marginTop:'2vh',marginBottom:'2vh',display:'flex'}}>
-                <b style={{marginRight:'auto',marginLeft:'auto'}}>Cantidad de ONG por Ideologia</b>
+                <b style={{marginRight:'auto',marginLeft:'auto',textAlign:'center'}}>Directores de ONG</b>
             </h1>
             <Snackbar open={err} autoHideDuration={6000} onClose={handleClose}>
                 <MuiAlert elevation={6} variant="filled" onClose={handleClose} severity="error">
@@ -49,6 +49,8 @@ export default function ReportesDirPage (props:any) {
                         <TableRow>
                             <TableCell>ONG</TableCell>
                             <TableCell align="right">Director</TableCell>
+                            <TableCell align="right">Mail</TableCell>
+                            <TableCell align="right">Telefono</TableCell>
                             <TableCell align="right">Contacto</TableCell>
                         </TableRow>
                     </TableHead>
@@ -59,6 +61,8 @@ export default function ReportesDirPage (props:any) {
                                 {row.nombre}
                             </TableCell>
                             <TableCell align="right">{row.director}</TableCell>
+                            <TableCell align="right">{row.mail}</TableCell>
+                            <TableCell align="right">{row.telefono}</TableCell>
                             <TableCell align="right">{row.contacto}</TableCell>
                         </TableRow>
                     ))}
@@ -76,10 +80,9 @@ export default function ReportesDirPage (props:any) {
 
 const useStyles = makeStyles({
   table: {
-    minWidth: 650,
     marginLeft:'auto',
     marginRight: 'auto',
-    width:'50%',
+    width:'100%',
     boxShadow: 'none'
   },
 });

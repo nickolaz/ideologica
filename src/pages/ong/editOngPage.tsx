@@ -40,10 +40,10 @@ export default function EditOngPage(props:any) {
     };
 
     return (
-        <div>
+        <div style={{width: '100%'}}>
             <Header history={props.history}/>
-            <h2 style={{display:'flex',fontSize:'4rem',marginBottom:'auto'}}>
-                <b style={{marginRight:'auto',marginLeft:'auto'}}>Editar ONG</b></h2>
+            <h2 style={{display:'flex',fontSize:'3rem',marginBottom:'auto'}}>
+                <b style={{marginRight:'auto',marginLeft:'auto',textAlign:'center'}}>Editar ONG</b></h2>
             <form className={classes.form} noValidate autoComplete="off" >
                 <TextField label="Nombre" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setNombre(event.target.value)}} value={nombre} disabled={true}/>
                 <TextField label="Direccion" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setDireccion(event.target.value)}} value={direccion}/>

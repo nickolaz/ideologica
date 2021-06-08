@@ -38,7 +38,7 @@ export default function LoginPage (props : any) {
     };
 
     return (
-        <Box>
+        <Box className={classes.container}>
             <form className={classes.form} noValidate autoComplete="off" onSubmit={(e)=>{
                 e.preventDefault();
                 handleLogin();
@@ -56,14 +56,19 @@ export default function LoginPage (props : any) {
 };
 
 const useStyles = makeStyles((theme) => ({
+    container : {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100%'
+    },
     form: {
-      maxWidth: '330px',
+      maxWidth: '305px',
       margin: '20vh auto',
-      display: 'flex',
-      flexDirection: 'column',
-      background: 'white',
       padding: '20px',
-      border: '0.5px solid black'
+      border: '0.5px solid black',
+      textAlign: 'center'
     },
     image: {
         height: '100px',

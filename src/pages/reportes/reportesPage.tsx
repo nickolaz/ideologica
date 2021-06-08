@@ -19,9 +19,9 @@ export default function ReportesPage (props:any) {
     };
 
     return (
-        <div>
+        <div style={{width: '100%'}}>
             <Header history={props.history}/>
-            <h2 style={{display:'flex',fontSize:'4rem',marginBottom:'auto'}}>
+            <h2 style={{display:'flex',fontSize:'3rem',marginBottom:'auto'}}>
                 <b style={{marginRight:'auto',marginLeft:'auto'}}>Reportes</b></h2>
             <Snackbar open={err} autoHideDuration={6000} onClose={handleClose}>
                 <MuiAlert elevation={6} variant="filled" onClose={handleClose} severity="error">

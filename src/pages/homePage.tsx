@@ -19,6 +19,10 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         marginLeft: 'auto',
         marginRight: 'auto',
-        marginTop: '20vh'
+        marginTop: '20vh',
+        width: '70vw',
+        height:'70vw',
+        maxWidth: '350px',
+        maxHeight: '350px'
     }
 }));

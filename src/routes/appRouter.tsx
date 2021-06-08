@@ -1,7 +1,8 @@
 import React from 'react';
 import { Switch,Route } from "react-router-dom";
 import { LoginPage , HomePage ,NotFoundPage, SemaforoPage,OngPage, CreateOngPage, EditOngPage, CreateSemaforoPage, EditSemaforoPage, 
-  ViewOngPage, ViewSemaforoPage, ReportesPage, ReportesCantPage, ReportesDirPage, ReportesVinPage }  from '../pages';
+  ViewOngPage, ViewSemaforoPage, ReportesPage, ReportesCantPage, ReportesDirPage, ReportesVinPage, UserPage, CreateUserPage, EditUserPage,
+  ViewUserPage, EditUserPassPage }  from '../pages';
 import { PrivateRoute } from './privateRoute';
 
 export default function AppRouter() {
@@ -22,7 +23,11 @@ export default function AppRouter() {
         <PrivateRoute exact path="/reportes/cant" component={ReportesCantPage} />
         <PrivateRoute exact path="/reportes/dir" component={ReportesDirPage} />
         <PrivateRoute exact path="/reportes/vin" component={ReportesVinPage} />
-        <PrivateRoute exact path="/users" component={HomePage} />
+        <PrivateRoute exact path="/users" component={UserPage} />
+        <PrivateRoute exact path="/users/new" component={CreateUserPage} />
+        <PrivateRoute exact path="/users/edit" component={EditUserPage} />
+        <PrivateRoute exact path="/users/view" component={ViewUserPage} />
+        <PrivateRoute exact path="/users/changepass" component={EditUserPassPage} />
         <Route path="*" component={NotFoundPage} />
       </Switch>
     </div>

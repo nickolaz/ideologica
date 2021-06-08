@@ -13,3 +13,8 @@ export { default as ReportesPage }  from './reportes/reportesPage';
 export { default as ReportesCantPage }  from './reportes/reportesCantPage';
 export { default as ReportesDirPage }  from './reportes/reportesDirPage';
 export { default as ReportesVinPage }  from './reportes/reportesVinPage';
+export { default as UserPage }  from './users/UserPage';
+export { default as CreateUserPage }  from './users/createUserPage';
+export { default as EditUserPage }  from './users/editUserPage';
+export { default as ViewUserPage }  from './users/viewUserPage';
+export { default as EditUserPassPage }  from './users/editUserPassPage';

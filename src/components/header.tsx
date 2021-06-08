@@ -9,40 +9,48 @@ const navLinks = [
     { title: `Semaforo`, path: `/semaforo` },
     { title: `ONGs`, path: `/ong` },
     { title: `Reportes`, path: `/reportes` },
-    // { title: `Usuarios`, path: `/users` },
+    { title: `Usuarios`, path: `/users` },
 ]
 
 const Header = (props :any) => {
     const classes = useStyles();
     const dispatch = useDispatch();
-
+    
     return (
-        <AppBar position="static">
-        <Toolbar>
-            <Container className={classes.navbarDisplayFlex} >
-                <IconButton edge="start" color="inherit" aria-label="home" onClick={()=> props.history.replace("/home")}>
-                    <Home fontSize="large" />
-                </IconButton>
-                <List component="nav" aria-labelledby="main navigation" className={classes.navDisplayFlex} >
-                    {navLinks.map(({ title, path }) => (
-                        <ListItem button onClick={()=> props.history.replace(path)} key={title}>
-                            <ListItemText primary={title} />
+        <AppBar position="static" >
+            <Toolbar>
+                <Container className={classes.navbarDisplayFlex} >
+                    <IconButton edge="start" color="inherit" aria-label="home" onClick={()=> props.history.replace("/home")}>
+                        <Home fontSize="large" />
+                    </IconButton>
+                    <List component="nav" aria-labelledby="main navigation" className={classes.navDisplayFlex} >
+                        {navLinks.map(({ title, path }) => {
+                            return (
+                                <ListItem button onClick={()=> props.history.replace(path)} key={title}>
+                                    <ListItemText primary={title} />
+                                </ListItem>
+                            );
+                        })}
+                        <ListItem button onClick={() => { dispatch(clearOngs()); dispatch(clearAuth()); }}>
+                            <ListItemText primary={'salir'} />
                         </ListItem>
-                    ))}
-                    <ListItem button onClick={() => { dispatch(clearOngs()); dispatch(clearAuth()); }}>
-                        <ListItemText primary={'salir'} />
-                    </ListItem>
-                </List>
-            </Container>
-        </Toolbar>
+                    </List>
+                </Container>
+            </Toolbar>
         </AppBar>
     )
 }
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) =>({
     navbarDisplayFlex: {
         display: `flex`,
-        justifyContent: `space-between`
+        justifyContent: `space-between`,
+        [theme.breakpoints.down('sm')]: {
+            overflowX: 'scroll',
+        },
+        [theme.breakpoints.down('md')]: {
+            overflowX: 'scroll',
+        },
     },
     navDisplayFlex: {
       display: `flex`,
@@ -53,6 +61,6 @@ const useStyles = makeStyles({
       textTransform: `uppercase`,
       color: `white`
     }
-});
+}));
 
 export default Header;

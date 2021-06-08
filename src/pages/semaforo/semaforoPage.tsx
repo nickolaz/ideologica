@@ -46,15 +46,17 @@ export default function SemaforoPage (props:any) {
     };
 
     return (
-        <div>
+        <div style={{width: '100%'}}>
             <Header history={props.history}/>
-            <h2 style={{marginTop:'2vh',marginLeft:'40vw',fontSize:'4rem',marginBottom:'auto'}}><b>Semaforos</b></h2>
+            <h2 style={{display:'flex',fontSize:'3rem',marginBottom:'auto'}}>
+                <b style={{marginRight:'auto',marginLeft:'auto'}}>Semaforos</b>
+            </h2>
             <Snackbar open={err} autoHideDuration={6000} onClose={handleClose}>
                 <MuiAlert elevation={6} variant="filled" onClose={handleClose} severity="error">
                     {labelErr}
                 </MuiAlert>
             </Snackbar>
-            <div style={{ height: 400, width: '55%' , marginTop: '1vh',display: 'flex',marginRight: 'auto',marginLeft: 'auto'}}>
+            <div style={{ height: 400, width: '100%' , marginTop: '1vh',display: 'flex',marginRight: 'auto',marginLeft: 'auto'}}>
                 <DataGrid rows={semaforos} columns={columns} pageSize={5} onRowSelected={(e)=>{ setrow(e); }} />
             </div>
             <div style={{marginTop:'1%'}}>

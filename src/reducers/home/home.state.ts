@@ -8,6 +8,9 @@ interface AuthStateModel {
     cant : any[],
     dir : any[],
     vin : any[],
+    type : any,
+    users : any[],
+    userLogeado : string,
 }
 
 export default AuthStateModel;
