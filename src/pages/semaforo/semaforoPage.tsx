@@ -7,6 +7,7 @@ import { RootState } from '../../store/store';
 import { error, labelerror } from '../../actions/Home.actions';
 import { DataGrid } from '@material-ui/data-grid';
 import { deleteSemaforos, getInvestigacion, getSemaforos } from '../../actions/semaforo.actions';
+import SearchBar from "material-ui-search-bar";
 
 export default function SemaforoPage (props:any) {
     const err = useSelector((state : RootState) => state.home.error);
@@ -15,10 +16,13 @@ export default function SemaforoPage (props:any) {
     const [row,setrow] = useState<any>(null);
     const [open, setOpen] = useState(false);
     const semaforos = useSelector((state : RootState) => state.home.semaforos);
+    const [searched, setSearched] = useState<string>("");
+    const [rowSemaforo,setRowSemaforo] = useState<any>();
 
     useEffect(() => {
         dispatch(getSemaforos());
         dispatch(getInvestigacion());
+        if(semaforos) setRowSemaforo(semaforos);
     },[semaforos.length]);
 
     const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
@@ -45,6 +49,20 @@ export default function SemaforoPage (props:any) {
         setrow(null);
     };
 
+    const requestSearch = (searchedVal: string) => {
+        const filteredRows = semaforos.filter((row) => {
+            let search = row?.ong?.toLowerCase().includes(searchedVal.toLowerCase()) || row?.ideologia?.toLowerCase().includes(searchedVal.toLowerCase()) ||
+                row?.publicaciones?.toLowerCase().includes(searchedVal.toLowerCase()) || row?.relacion?.toLowerCase().includes(searchedVal.toLowerCase());
+            return search;
+        });
+        setRowSemaforo(filteredRows);
+    };
+
+    const cancelSearch = () => {
+        setSearched("");
+        requestSearch(searched);
+    };
+
     return (
         <div style={{width: '100%'}}>
             <Header history={props.history}/>
@@ -56,8 +74,13 @@ export default function SemaforoPage (props:any) {
                     {labelErr}
                 </MuiAlert>
             </Snackbar>
+            <SearchBar
+                value={searched}
+                onChange={(searchVal) => requestSearch(searchVal)}
+                onCancelSearch={() => cancelSearch()}
+            />
             <div style={{ height: 400, width: '100%' , marginTop: '1vh',display: 'flex',marginRight: 'auto',marginLeft: 'auto'}}>
-                <DataGrid rows={semaforos} columns={columns} pageSize={5} onRowSelected={(e)=>{ setrow(e); }} />
+                <DataGrid rows={rowSemaforo?rowSemaforo:semaforos} columns={columns} pageSize={5} onRowSelected={(e)=>{ setrow(e); }} />
             </div>
             <div style={{marginTop:'1%'}}>
                 <Button variant="contained" color="primary" style={{ marginLeft:'1%',marginRight:'1%'}} onClick={()=>{ props.history.replace("/semaforo/new")}}> Crear </Button>

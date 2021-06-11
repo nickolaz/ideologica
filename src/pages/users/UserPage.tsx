@@ -8,6 +8,7 @@ import { error, labelerror } from '../../actions/Home.actions';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import { deleteUser, getUsers } from '../../actions/User.actions';
+import SearchBar from "material-ui-search-bar";
 
 export default function UserPage (props:any) {
     const dispatch = useDispatch();
@@ -18,9 +19,12 @@ export default function UserPage (props:any) {
     const err = useSelector((state : RootState) => state.home.error);
     const labelErr = useSelector((state : RootState) => state.home.labelError);
     const [open, setOpen] = useState(false);
+    const [searched, setSearched] = useState<string>("");
+    const [rowUser,setRowUser] = useState<any>();
 
     useEffect(() => {
         dispatch(getUsers());
+        if(users) setRowUser(users);
     },[users.length]);
 
     const columns: any[] = [
@@ -48,6 +52,20 @@ export default function UserPage (props:any) {
         setrow(null);
     };
 
+    const requestSearch = (searchedVal: string) => {
+        const filteredRows = users.filter((row) => {
+            let search = row?.username?.toLowerCase().includes(searchedVal.toLowerCase()) || row?.nombre?.toLowerCase().includes(searchedVal.toLowerCase()) ||
+                row?.tipo?.toLowerCase().includes(searchedVal.toLowerCase());
+            return search;
+        });
+        setRowUser(filteredRows);
+    };
+
+    const cancelSearch = () => {
+        setSearched("");
+        requestSearch(searched);
+    };
+
     return (
         <div style={{width: '100%'}}>
             <Header history={props.history}/>
@@ -59,6 +77,11 @@ export default function UserPage (props:any) {
                     {labelErr}
                 </MuiAlert>
             </Snackbar>
+            <SearchBar
+                value={searched}
+                onChange={(searchVal) => requestSearch(searchVal)}
+                onCancelSearch={() => cancelSearch()}
+            />
             <div style={{ height: 400, width: '100%' , marginTop: '1vh'}}>
                 <DataGrid rows={users} columns={columns} pageSize={5} onRowSelected={(e)=>{ setrow(e); }} />
             </div>
