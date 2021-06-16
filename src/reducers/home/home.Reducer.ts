@@ -21,6 +21,7 @@ const initialState : HomeStateModel = {
     type : '',
     users : [],
     userLogeado : '',
+    home : [],
 }
 
 const authReducer = (state: homeState = initialState, action: homeAction) => {
@@ -89,6 +90,11 @@ const authReducer = (state: homeState = initialState, action: homeAction) => {
             return {
                 ...state,
                 userLogeado: action.payload
+            } as homeState;
+        case HomeActionsEnum.getHome:
+            return {
+                ...state,
+                home: action.payload
             } as homeState;
         default:
             return state;

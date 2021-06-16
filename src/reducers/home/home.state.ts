@@ -11,6 +11,7 @@ interface AuthStateModel {
     type : any,
     users : any[],
     userLogeado : string,
+    home : any[],
 }
 
 export default AuthStateModel;

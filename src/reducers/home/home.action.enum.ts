@@ -12,6 +12,7 @@ enum HomeActionsEnum {
     getType = '[Auth] Tipo de Usuario',
     getUsers = '[Users] obtener usuarios',
     getUserLogeado = '[Auth] usuario logeador',
+    getHome = '[Home] obtener ongs y semaforo para el home',
 }
 
 export default HomeActionsEnum;

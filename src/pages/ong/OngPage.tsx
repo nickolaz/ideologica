@@ -15,6 +15,7 @@ export default function OngPage (props:any) {
     const [row,setrow] = useState<any>(null);
     const ongs = useSelector((state : RootState) => state.home.ongs);
     const err = useSelector((state : RootState) => state.home.error);
+    const tipoLogeado = useSelector((state : RootState) => state.home.type);
     const labelErr = useSelector((state : RootState) => state.home.labelError);
     const [open, setOpen] = useState(false);
     const [searched, setSearched] = useState<string>("");
@@ -91,16 +92,25 @@ export default function OngPage (props:any) {
             <div style={{ height: 400, width: '100%' , marginTop: '1vh'}}>
                 <DataGrid rows={rowOng?rowOng:ongs} columns={columns} pageSize={5} onRowSelected={(e)=>{ setrow(e); }} />
             </div>
-            <div style={{marginTop:'1%'}}>
-                <Button variant="contained" color="primary" style={{ marginLeft:'1%',marginRight:'1%'}} onClick={()=>{ props.history.replace("/ong/new")}}> Crear </Button>
-                <Button variant="contained" color="primary" style={{backgroundColor: 'green'}} disabled={row==null} onClick={()=>{
-                    props.history.replace("/ong/edit",row?.data);
-                }}> Editar </Button>
-                <Button variant="contained" color="primary" disabled={row==null} style={{ marginLeft:'1%',marginRight:'1%'}} onClick={()=>{
-                    props.history.replace("/ong/view",row?.data);
-                }}> Ver </Button>
-                <Button variant="contained" color="secondary" style={{ float: 'right' , marginRight: '1%'}} disabled={row==null} onClick={()=> setOpen(true)}> Eliminar </Button>
-            </div>
+            { tipoLogeado === 'A' &&
+                <div style={{marginTop:'1%'}}>
+                    <Button variant="contained" color="primary" style={{ marginLeft:'1%',marginRight:'1%'}} onClick={()=>{ props.history.replace("/ong/new")}}> Crear </Button>
+                    <Button variant="contained" color="primary" style={{backgroundColor: 'green'}} disabled={row==null} onClick={()=>{
+                        props.history.replace("/ong/edit",row?.data);
+                    }}> Editar </Button>
+                    <Button variant="contained" color="primary" disabled={row==null} style={{ marginLeft:'1%',marginRight:'1%'}} onClick={()=>{
+                        props.history.replace("/ong/view",row?.data);
+                    }}> Ver </Button>
+                    <Button variant="contained" color="secondary" style={{ float: 'right' , marginRight: '1%'}} disabled={row==null} onClick={()=> setOpen(true)}> Eliminar </Button>
+                </div>
+            }
+            { tipoLogeado === 'O' &&
+                <div style={{marginTop:'1%'}}>
+                    <Button variant="contained" color="primary" disabled={row==null} style={{ marginLeft:'1%',marginRight:'1%'}} onClick={()=>{
+                        props.history.replace("/ong/view",row?.data);
+                    }}> Ver </Button>
+                </div>
+            }
             <Dialog open={open} onClose={handleCancel} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description" >
                 <DialogTitle id="alert-dialog-title">{"Eliminar ONG"}</DialogTitle>   
                 <DialogContent>
