@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import Header from '../../components/header';
 import { Button, makeStyles, TextField } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { editPassUser } from '../../actions/User.actions';
+import { RootState } from '../../store/store';
 
 export default function EditUserPassPage(props:any) {
     const classes = useStyles();
     const dispatch = useDispatch();
     let user = props.history.location.state;
-    const [username,setUsername] = useState<any>(user.username);
-    const [password,setPassword] = useState<any>(user.nombre);
-    const [newpassword,setNewPassword] = useState<any>(user.tipo);
+    const tipoLogeado = useSelector((state : RootState) => state.home.type);
+    const [username,setUsername] = useState<any>(user);
+    const [password,setPassword] = useState<any>();
+    const [newpassword,setNewPassword] = useState<any>();
 
     const create = () => {
         let user = {

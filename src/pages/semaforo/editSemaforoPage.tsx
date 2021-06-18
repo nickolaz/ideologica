@@ -121,7 +121,7 @@ export default function EditSemaforoPage(props:any) {
                 <TextField label="Relaciones con otras ONGs" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setRelacionOng(event.target.value)}} value={relacionOng}/>
                 <TextField label="Fuente" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setFuente(event.target.value)}} value={fuente}/>
                 <div style={{marginTop:'5%'}}>
-                    <Button variant="contained" color="primary" style={{ marginLeft:'1%',marginRight:'1%'}} onClick={create} > Editar </Button>
+                    <Button variant="contained" color="primary" style={{ marginLeft:'1%',marginRight:'1%'}} onClick={create} > Guardar Cambios </Button>
                     <Button variant="contained" color="secondary" style={{ float: 'right' , marginRight: '1%'}} onClick={()=>{ props.history.replace("/semaforo")}} > Cancelar </Button>
                 </div>
             </form>

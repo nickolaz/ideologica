@@ -1,9 +1,10 @@
 import * as React from "react"
 import { AppBar, Toolbar , IconButton, List, ListItem, ListItemText, makeStyles, Container} from "@material-ui/core";
 import { Home } from "@material-ui/icons";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { clearAuth } from "../actions/Home.actions";
 import { clearOngs } from "../actions/Ong.actions";
+import { RootState } from "../store/store";
 
 const navLinks = [
     { title: `Semaforo`, path: `/semaforo` },
@@ -15,7 +16,9 @@ const navLinks = [
 const Header = (props :any) => {
     const classes = useStyles();
     const dispatch = useDispatch();
-    
+    const tipoLogeado = useSelector((state : RootState) => state.home.type);
+    const userLogeado = useSelector((state : RootState) => state.home.userLogeado);
+
     return (
         <AppBar position="static" >
             <Toolbar>
@@ -25,11 +28,24 @@ const Header = (props :any) => {
                     </IconButton>
                     <List component="nav" aria-labelledby="main navigation" className={classes.navDisplayFlex} >
                         {navLinks.map(({ title, path }) => {
-                            return (
-                                <ListItem button onClick={()=> props.history.replace(path)} key={title}>
-                                    <ListItemText primary={title} />
-                                </ListItem>
-                            );
+                            if(title === 'Usuarios'){
+                                { tipoLogeado === 'A' &&
+                                    <ListItem button onClick={()=> props.history.replace(path)} key={title}>
+                                        <ListItemText primary={title} />
+                                    </ListItem>
+                                }
+                                { tipoLogeado === 'O' &&
+                                    <ListItem button onClick={()=> props.history.replace("/users/changepass",userLogeado)} key={title}>
+                                        <ListItemText primary={'Cambiar Clave'} />
+                                    </ListItem>
+                                }
+                            }else{
+                                return (
+                                    <ListItem button onClick={()=> props.history.replace(path)} key={title}>
+                                        <ListItemText primary={title} />
+                                    </ListItem>
+                                );
+                            }
                         })}
                         <ListItem button onClick={() => { dispatch(clearOngs()); dispatch(clearAuth()); }}>
                             <ListItemText primary={'salir'} />

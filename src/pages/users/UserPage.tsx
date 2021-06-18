@@ -103,7 +103,7 @@ export default function UserPage (props:any) {
             { tipoLogeado === 'O' &&
                 <div style={{marginTop:'1%'}}>
                     <Button variant="contained" color="primary" style={{backgroundColor: 'green'}} disabled={!(row && row?.data.username == userLogeado)} onClick={()=>{
-                        props.history.replace("/users/changepass",row?.data);
+                        props.history.replace("/users/changepass",row?.data.username);
                     }}> Cambiar contraseña </Button>
                 </div>
             }

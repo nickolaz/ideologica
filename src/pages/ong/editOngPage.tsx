@@ -60,7 +60,7 @@ export default function EditOngPage(props:any) {
                         onChange={(date: Date | null) => { setSelectedDate(date)}} value={selectedDate}/>
                 </MuiPickersUtilsProvider>
                 <div style={{marginTop:'5%'}}>
-                    <Button variant="contained" color="primary" style={{ marginLeft:'1%',marginRight:'1%'}} onClick={create} > Editar </Button>
+                    <Button variant="contained" color="primary" style={{ marginLeft:'1%',marginRight:'1%'}} onClick={create} > Guardar Cambios </Button>
                     <Button variant="contained" color="secondary" style={{ float: 'right' , marginRight: '1%'}} onClick={()=>{ props.history.replace("/ong")}} > Cancelar </Button>
                 </div>
             </form>

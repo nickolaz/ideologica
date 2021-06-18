@@ -38,7 +38,7 @@ export default function EditUserPage(props:any) {
                         <MenuItem value={'A'} >{'Administrador'}</MenuItem>
                 </Select>
                 <div style={{marginTop:'5%'}}>
-                    <Button variant="contained" color="primary" style={{ marginLeft:'1%',marginRight:'1%'}} onClick={create} > Editar </Button>
+                    <Button variant="contained" color="primary" style={{ marginLeft:'1%',marginRight:'1%'}} onClick={create} > Guardar Cambios </Button>
                     <Button variant="contained" color="secondary" style={{ float: 'right' , marginRight: '1%'}} onClick={()=>{ props.history.replace("/users")}} > Cancelar </Button>
                 </div>
             </form>
