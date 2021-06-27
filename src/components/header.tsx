@@ -29,15 +29,18 @@ const Header = (props :any) => {
                     <List component="nav" aria-labelledby="main navigation" className={classes.navDisplayFlex} >
                         {navLinks.map(({ title, path }) => {
                             if(title === 'Usuarios'){
-                                { tipoLogeado === 'A' &&
-                                    <ListItem button onClick={()=> props.history.replace(path)} key={title}>
-                                        <ListItemText primary={title} />
-                                    </ListItem>
-                                }
-                                { tipoLogeado === 'O' &&
-                                    <ListItem button onClick={()=> props.history.replace("/users/changepass",userLogeado)} key={title}>
-                                        <ListItemText primary={'Cambiar Clave'} />
-                                    </ListItem>
+                                if(tipoLogeado === 'A'){
+                                    return (
+                                        <ListItem button onClick={()=> props.history.replace(path)} key={title}>
+                                            <ListItemText primary={title} />
+                                        </ListItem>
+                                    );
+                                }else{
+                                    return (
+                                        <ListItem button onClick={()=> props.history.replace("/users/changepass",userLogeado)} key={title}>
+                                            <ListItemText primary={'Cambiar Clave'} />
+                                        </ListItem>
+                                    );
                                 }
                             }else{
                                 return (
