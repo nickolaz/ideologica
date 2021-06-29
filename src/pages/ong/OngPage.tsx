@@ -28,15 +28,15 @@ export default function OngPage (props:any) {
 
     const columns: any[] = [
         { field: 'id', headerName: 'id', width: 90 },
-        { field: 'nombre', headerName: 'Nombre', width: 180 },
-        { field: 'direccion', headerName: 'Direccion', width: 300 },
+        { field: 'nombre', headerName: 'Nombre', width: 250 },
+        { field: 'direccion', headerName: 'Direccion', width: 380 },
         { field: 'telefono', headerName: 'Telefono', width: 150  },
-        { field: 'mail', headerName: 'Mail', width: 250 },
+        { field: 'mail', headerName: 'Mail', width: 300 },
         { field: 'director', headerName: 'Director', width: 220 },
-        { field: 'instagram', headerName: 'Instagram', width: 180 },
-        { field: 'twitter', headerName: 'Twitter', width: 180 },
+        { field: 'instagram', headerName: 'Instagram', width: 250 },
+        { field: 'twitter', headerName: 'Red Social', width: 250 },
         { field: 'contacto', headerName: 'Contacto', width: 220 },
-        { field: 'web', headerName: 'Sitio Web', width: 200 },
+        { field: 'web', headerName: 'Sitio Web', width: 250 },
         { field: 'fecha_creacion', headerName: 'Fecha de Creacion', width: 200 },
     ];
 

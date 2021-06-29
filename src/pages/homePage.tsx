@@ -51,7 +51,7 @@ export default function HomePage (props:any) {
 
     const columns: any[] = [
         { field: 'id', headerName: 'id', width: 90 },
-        { field: 'ong', headerName: 'ONG', width: 200 },
+        { field: 'ong', headerName: 'ONG', width: 250 },
         { field: 'ideologia', headerName: 'Ideologia', width: 250 },
         { field: 'publicaciones', headerName: 'Publicaciones', width: 280  },
         { field: 'relacion', headerName: 'Relacion con otra ONG', width: 280 },
@@ -60,8 +60,8 @@ export default function HomePage (props:any) {
         { field: 'telefono', headerName: 'Telefono', width: 150  },
         { field: 'mail', headerName: 'Mail', width: 250 },
         { field: 'director', headerName: 'Director', width: 220 },
-        { field: 'instagram', headerName: 'Instagram', width: 180 },
-        { field: 'twitter', headerName: 'Twitter', width: 180 },
+        { field: 'instagram', headerName: 'Instagram', width: 250 },
+        { field: 'twitter', headerName: 'Red Social', width: 250 },
         { field: 'contacto', headerName: 'Contacto', width: 250 },
         { field: 'web', headerName: 'Sitio Web', width: 280 },
         { field: 'fecha_creacion', headerName: 'Fecha de Creacion', width: 200 },
