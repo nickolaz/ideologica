@@ -17,8 +17,8 @@ export default function CreateOngPage(props:any) {
     const [director,setDirector] = useState<any>();
     const [insta,setInsta] = useState<any>();
     const [twit,setTwit] = useState<any>();
-    const [contacto,setContacto] = useState<any>();
     const [web,setWeb] = useState<any>();
+    const [fb,setFb] = useState<any>();
 
     const create = () => {
         let ong = {
@@ -29,7 +29,7 @@ export default function CreateOngPage(props:any) {
             director : director,
             intagram : insta,
             twitter : twit,
-            contacto : contacto,
+            fb: fb,
             web : web,
             fechaCreacion : selectedDate?.toLocaleDateString(),
         };
@@ -50,8 +50,8 @@ export default function CreateOngPage(props:any) {
                 <TextField label="Correo Electronico" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setMail(event.target.value)}}/>
                 <TextField label="Director" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setDirector(event.target.value)}}/>
                 <TextField label="Instagram" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setInsta(event.target.value)}}/>
-                <TextField label="Red Social" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setTwit(event.target.value)}}/>
-                <TextField label="Contacto" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setContacto(event.target.value)}}/>
+                <TextField label="Twitter" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setTwit(event.target.value)}}/>
+                <TextField label="Facebook" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setFb(event.target.value)}}/>
                 <TextField label="Sitio Web" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setWeb(event.target.value)}}/>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                     <KeyboardDatePicker disableToolbar variant="inline" format="dd/MM/yyyy" margin="normal" 

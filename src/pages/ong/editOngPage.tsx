@@ -19,8 +19,8 @@ export default function EditOngPage(props:any) {
     const [director,setDirector] = useState<any>(ong.director);
     const [insta,setInsta] = useState<any>(ong.instagram);
     const [twit,setTwit] = useState<any>(ong.twitter);
-    const [contacto,setContacto] = useState<any>(ong.contacto);
     const [web,setWeb] = useState<any>(ong.web);
+    const [fb,setFb] = useState<any>(ong.fb);
 
     const create = () => {
         let ong = {
@@ -31,7 +31,7 @@ export default function EditOngPage(props:any) {
             director : director,
             intagram : insta,
             twitter : twit,
-            contacto : contacto,
+            fb:fb,
             web : web,
             fechaCreacion : selectedDate?.toLocaleDateString(),
         };
@@ -51,8 +51,8 @@ export default function EditOngPage(props:any) {
                 <TextField label="Correo Electronico" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setMail(event.target.value)}} value={mail}/>
                 <TextField label="Director" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setDirector(event.target.value)}} value={director}/>
                 <TextField label="Instagram" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setInsta(event.target.value)}} value={insta}/>
-                <TextField label="Red Social" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setTwit(event.target.value)}} value={twit}/>
-                <TextField label="Contacto" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setContacto(event.target.value)}} value={contacto}/>
+                <TextField label="Twitter" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setTwit(event.target.value)}} value={twit}/>
+                <TextField label="Facebook" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setFb(event.target.value)}} value={fb}/>
                 <TextField label="Sitio Web" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setWeb(event.target.value)}} value={web}/>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                     <KeyboardDatePicker disableToolbar variant="inline" format="dd/MM/yyyy" margin="normal" 

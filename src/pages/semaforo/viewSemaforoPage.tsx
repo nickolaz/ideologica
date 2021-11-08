@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../../components/header';
-import { Button, Checkbox, FormControl, FormLabel, InputLabel, makeStyles, MenuItem, Select, TextField } from '@material-ui/core';
+import { Box, Button, Checkbox, FormControl, FormLabel, InputLabel, makeStyles, MenuItem, Select, TextField, Typography } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOngs } from '../../actions/Ong.actions';
 import { RootState } from '../../store/store';
@@ -60,7 +60,14 @@ export default function ViewSemaforoPage(props:any) {
                     </Select>
                 </FormControl>
                 <TextField label="Ideologia" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setIdeologia(event.target.value)}} value={ideologia} disabled={true}/>
-                <TextField label="Publicaciones" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setPublicaciones(event.target.value)}} value={publicaciones} disabled={true}/>
+                <Box style={{ borderBottom: '0.5px dotted' , borderColor: 'rgba(0, 0, 0, 0.38)'}}>
+                    <Typography component="p" style={{color: 'rgba(0, 0, 0, 0.38)'}}>
+                        Publicaciones
+                    </Typography>
+                    <a href={publicaciones.toString()} target="_blank" rel="noreferrer" className={classes.txt}>
+                            {publicaciones.toString()}
+                    </a>
+                </Box>
                 <FormControl component="fieldset" className={classes.txt}>
                     <FormLabel component="legend">Investigación</FormLabel>
                     <FormGroup>
@@ -83,7 +90,14 @@ export default function ViewSemaforoPage(props:any) {
                     </FormGroup>
                 </FormControl>
                 <TextField label="Relaciones con otras ONGs" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setRelacionOng(event.target.value)}} value={relacionOng} disabled={true}/>
-                <TextField label="Fuente" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setFuente(event.target.value)}} value={fuente} disabled={true}/>
+                <Box style={{ borderBottom: '0.5px dotted' , borderColor: 'rgba(0, 0, 0, 0.38)'}}>
+                    <Typography component="p" style={{color: 'rgba(0, 0, 0, 0.38)'}}>
+                        Fuente
+                    </Typography>
+                    <a href={fuente.toString()} target="_blank" rel="noreferrer" className={classes.txt}>
+                            {fuente.toString()}
+                    </a>
+                </Box>
                 <div style={{marginTop:'5%'}}>
                     <Button variant="contained" color="secondary" style={{ float: 'right' , marginRight: '1%'}} onClick={()=>{ props.history.replace("/semaforo")}} > Cerrar </Button>
                 </div>

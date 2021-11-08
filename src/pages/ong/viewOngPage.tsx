@@ -16,8 +16,8 @@ export default function ViewOngPage(props:any) {
     const [director,setDirector] = useState<any>(ong.director);
     const [insta,setInsta] = useState<any>(ong.instagram);
     const [twit,setTwit] = useState<any>(ong.twitter);
-    const [contacto,setContacto] = useState<any>(ong.contacto);
     const [web,setWeb] = useState<any>(ong.web);
+    const [fb,setFb] = useState<any>(ong.fb);
 
     return (
         <div style={{width: '100%'}}>
@@ -31,8 +31,8 @@ export default function ViewOngPage(props:any) {
                 <TextField label="Correo Electronico" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setMail(event.target.value)}} value={mail} disabled={true}/>
                 <TextField label="Director" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setDirector(event.target.value)}} value={director} disabled={true}/>
                 <TextField label="Instagram" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setInsta(event.target.value)}} value={insta} disabled={true}/>
-                <TextField label="Red Social" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setTwit(event.target.value)}} value={twit} disabled={true}/>
-                <TextField label="Contacto" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setContacto(event.target.value)}} value={contacto} disabled={true}/>
+                <TextField label="Twitter" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setTwit(event.target.value)}} value={twit} disabled={true}/>
+                <TextField label="Facebook" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setFb(event.target.value)}} value={fb} disabled={true}/>
                 <TextField label="Sitio Web" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setWeb(event.target.value)}} value={web} disabled={true}/>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                     <KeyboardDatePicker disableToolbar variant="inline" format="dd/MM/yyyy" margin="normal" 

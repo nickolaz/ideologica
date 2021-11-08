@@ -34,8 +34,8 @@ export default function OngPage (props:any) {
         { field: 'mail', headerName: 'Mail', width: 300 },
         { field: 'director', headerName: 'Director', width: 220 },
         { field: 'instagram', headerName: 'Instagram', width: 250 },
-        { field: 'twitter', headerName: 'Red Social', width: 250 },
-        { field: 'contacto', headerName: 'Contacto', width: 220 },
+        { field: 'twitter', headerName: 'Twitter', width: 250 },
+        { field: 'fb', headerName: 'Facebook', width: 250 },
         { field: 'web', headerName: 'Sitio Web', width: 250 },
         { field: 'fecha_creacion', headerName: 'Fecha de Creacion', width: 200 },
     ];
@@ -61,8 +61,8 @@ export default function OngPage (props:any) {
             let search = row?.nombre?.toLowerCase().includes(searchedVal.toLowerCase()) || row?.direccion?.toLowerCase().includes(searchedVal.toLowerCase()) ||
                 row?.telefono?.toLowerCase().includes(searchedVal.toLowerCase()) || row?.mail?.toLowerCase().includes(searchedVal.toLowerCase()) ||
                 row?.director?.toLowerCase().includes(searchedVal.toLowerCase()) || row?.insta?.toLowerCase().includes(searchedVal.toLowerCase()) ||
-                row?.twitter?.toLowerCase().includes(searchedVal.toLowerCase()) || row?.contacto?.toLowerCase().includes(searchedVal.toLowerCase()) ||
-                row?.web?.toLowerCase().includes(searchedVal.toLowerCase());
+                row?.twitter?.toLowerCase().includes(searchedVal.toLowerCase()) ||  row?.web?.toLowerCase().includes(searchedVal.toLowerCase()) ||
+                row?.fb?.toLowerCase().includes(searchedVal.toLowerCase());
             return search;
         });
         setRowOng(filteredRows);
