@@ -37,8 +37,7 @@ export default function HomePage (props:any) {
                 row?.investigacion?.toLowerCase().includes(searchedVal.toLowerCase()) || row?.direccion?.toLowerCase().includes(searchedVal.toLowerCase()) ||
                 row?.telefono?.toLowerCase().includes(searchedVal.toLowerCase()) || row?.mail?.toLowerCase().includes(searchedVal.toLowerCase()) ||
                 row?.director?.toLowerCase().includes(searchedVal.toLowerCase()) || row?.insta?.toLowerCase().includes(searchedVal.toLowerCase()) ||
-                row?.twitter?.toLowerCase().includes(searchedVal.toLowerCase()) || row?.contacto?.toLowerCase().includes(searchedVal.toLowerCase()) ||
-                row?.web?.toLowerCase().includes(searchedVal.toLowerCase());
+                row?.twitter?.toLowerCase().includes(searchedVal.toLowerCase()) || row?.web?.toLowerCase().includes(searchedVal.toLowerCase());
             return search;
         });
         setRowHome(filteredRows);
@@ -62,7 +61,6 @@ export default function HomePage (props:any) {
         { field: 'director', headerName: 'Director', width: 220 },
         { field: 'instagram', headerName: 'Instagram', width: 250 },
         { field: 'twitter', headerName: 'Red Social', width: 250 },
-        { field: 'contacto', headerName: 'Contacto', width: 250 },
         { field: 'web', headerName: 'Sitio Web', width: 280 },
         { field: 'fecha_creacion', headerName: 'Fecha de Creacion', width: 200 },
     ];

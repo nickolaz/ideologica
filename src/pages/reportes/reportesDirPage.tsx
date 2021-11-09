@@ -51,7 +51,6 @@ export default function ReportesDirPage (props:any) {
                             <TableCell align="right">Director</TableCell>
                             <TableCell align="right">Mail</TableCell>
                             <TableCell align="right">Telefono</TableCell>
-                            <TableCell align="right">Contacto</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -63,7 +62,6 @@ export default function ReportesDirPage (props:any) {
                             <TableCell align="right">{row.director}</TableCell>
                             <TableCell align="right">{row.mail}</TableCell>
                             <TableCell align="right">{row.telefono}</TableCell>
-                            <TableCell align="right">{row.contacto}</TableCell>
                         </TableRow>
                     ))}
                     </TableBody>
