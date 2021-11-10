@@ -9,6 +9,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import { deleteOngs, getOngs } from '../../actions/Ong.actions';
 import SearchBar from "material-ui-search-bar";
+import { deleteSemaforos, getInvestigacion } from '../../actions/semaforo.actions';
 
 export default function OngPage (props:any) {
     const dispatch = useDispatch();
@@ -17,26 +18,30 @@ export default function OngPage (props:any) {
     const err = useSelector((state : RootState) => state.home.error);
     const tipoLogeado = useSelector((state : RootState) => state.home.type);
     const labelErr = useSelector((state : RootState) => state.home.labelError);
+    const home = useSelector((state : RootState) => state.home.home);
     const [open, setOpen] = useState(false);
     const [searched, setSearched] = useState<string>("");
     const [rowOng,setRowOng] = useState<any>();
 
     useEffect(() => {
         dispatch(getOngs());
-        if(ongs) setRowOng(ongs);
+        dispatch(getInvestigacion());
+        setRowOng(home);
     },[ongs.length]);
 
     const columns: any[] = [
-        { field: 'id', headerName: 'id', width: 90 },
-        { field: 'nombre', headerName: 'Nombre', width: 250 },
+        { field: 'ong', headerName: 'Nombre', width: 250 },
         { field: 'direccion', headerName: 'Direccion', width: 380 },
         { field: 'telefono', headerName: 'Telefono', width: 150  },
         { field: 'mail', headerName: 'Mail', width: 300 },
         { field: 'director', headerName: 'Director', width: 220 },
+        { field: 'ideologia', headerName: 'Ideologia', width: 250 },
+        { field: 'publicaciones', headerName: 'Publicaciones', width: 280  },
         { field: 'instagram', headerName: 'Instagram', width: 250 },
         { field: 'twitter', headerName: 'Twitter', width: 250 },
         { field: 'fb', headerName: 'Facebook', width: 250 },
         { field: 'web', headerName: 'Sitio Web', width: 250 },
+        { field: 'investigacion', headerName: 'Investigacion', width: 450 },
         { field: 'fecha_creacion', headerName: 'Fecha de Creacion', width: 200 },
     ];
 
@@ -52,13 +57,14 @@ export default function OngPage (props:any) {
 
     const handleAceptar = () => {
         dispatch(deleteOngs(row?.data));
+        dispatch(deleteSemaforos(row?.data));
         setOpen(false);
         setrow(null);
     };
 
     const requestSearch = (searchedVal: string) => {
         const filteredRows = ongs.filter((row) => {
-            let search = row?.nombre?.toLowerCase().includes(searchedVal.toLowerCase()) || row?.direccion?.toLowerCase().includes(searchedVal.toLowerCase()) ||
+            let search = row?.ong?.toLowerCase().includes(searchedVal.toLowerCase()) || row?.direccion?.toLowerCase().includes(searchedVal.toLowerCase()) ||
                 row?.telefono?.toLowerCase().includes(searchedVal.toLowerCase()) || row?.mail?.toLowerCase().includes(searchedVal.toLowerCase()) ||
                 row?.director?.toLowerCase().includes(searchedVal.toLowerCase()) || row?.insta?.toLowerCase().includes(searchedVal.toLowerCase()) ||
                 row?.twitter?.toLowerCase().includes(searchedVal.toLowerCase()) ||  row?.web?.toLowerCase().includes(searchedVal.toLowerCase()) ||
@@ -115,7 +121,7 @@ export default function OngPage (props:any) {
                 <DialogTitle id="alert-dialog-title">{"Eliminar ONG"}</DialogTitle>   
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
-                        Seguro que desea eliminar la ONG {row?.data.nombre} ?
+                        Seguro que desea eliminar la ONG {row?.data.ong} ?
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>

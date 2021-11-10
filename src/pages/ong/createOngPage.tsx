@@ -1,24 +1,24 @@
 import React, { useState } from 'react';
 import Header from '../../components/header';
 import { Button, Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, makeStyles, TextField } from '@material-ui/core';
-import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
-import DateFnsUtils from '@date-io/date-fns';
 import { useDispatch } from 'react-redux';
 import { createOngs } from '../../actions/Ong.actions';
+import { createSemaforo } from '../../actions/semaforo.actions';
 
 export default function CreateOngPage(props:any) {
     const classes = useStyles();
     const dispatch = useDispatch();
-    const [selectedDate, setSelectedDate] = useState<Date | null>( new Date() );
     const [nombre,setNombre] = useState<any>();
     const [direccion,setDireccion] = useState<any>();
     const [telefono,setTelefono] = useState<any>();
     const [mail,setMail] = useState<any>();
     const [director,setDirector] = useState<any>();
+    const [ideologia,setIdeologia] = useState<any>();
+    const [publicaciones,setPublicaciones] = useState<any>();
     const [insta,setInsta] = useState<any>();
     const [twit,setTwit] = useState<any>();
-    const [web,setWeb] = useState<any>();
     const [fb,setFb] = useState<any>();
+    const [web,setWeb] = useState<any>();
     const [marx,setMarx] = useState<boolean>();
     const [aborto,setAborto] = useState<boolean>();
     const [globalista,setGlobalista] = useState<boolean>();
@@ -38,6 +38,36 @@ export default function CreateOngPage(props:any) {
             fechaCreacion : (new Date()).toLocaleDateString(),
         };
         dispatch(createOngs(ong));
+        let semaforo = {
+            ong : nombre,
+            ideologia : ideologia,
+            publicaciones : publicaciones,
+            investigacion : [
+                {
+                    ong : nombre,
+                    pregunta : "Es marcista",
+                    respuesta : marx?'Si':'NO'
+                },
+                {
+                    ong : nombre,
+                    pregunta : "Pro aborto",
+                    respuesta : aborto?'Si':'NO'
+                },
+                {
+                    ong : nombre,
+                    pregunta : "Agenda Globalista",
+                    respuesta : globalista?'Si':'NO'
+                },
+                {
+                    ong : nombre,
+                    pregunta : "Ideologia de Género",
+                    respuesta : genero?'Si':'NO'
+                },
+            ],
+            relacion : '',
+            fuente : '',
+        };
+        dispatch(createSemaforo(semaforo));
         props.history.replace("/ong");
     };
 
@@ -48,19 +78,17 @@ export default function CreateOngPage(props:any) {
                 <b style={{marginRight:'auto',marginLeft:'auto',textAlign:'center'}}>Crear ONG</b>
             </h2>
             <form className={classes.form} noValidate autoComplete="off" >
-                <TextField label="Nombre" className={classes.txt} style={{ marginTop: 0}} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setNombre(event.target.value)}}/>
-                <TextField label="Direccion" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setDireccion(event.target.value)}}/>
-                <TextField label="Telefono" type="number" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setTelefono(event.target.value)}}/>
-                <TextField label="Correo Electronico" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setMail(event.target.value)}}/>
-                <TextField label="Director" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setDirector(event.target.value)}}/>
-                
-                <TextField label="Ideologia" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setWeb(event.target.value)}}/>
-                <TextField label="Publicaciones" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setWeb(event.target.value)}}/>
-                <TextField label="Fuente" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setInsta(event.target.value)}}/>
-                <TextField label="Instagram" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setInsta(event.target.value)}}/>
-                <TextField label="Twitter" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setTwit(event.target.value)}}/>
-                <TextField label="Facebook" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setFb(event.target.value)}}/>
-                <TextField label="Sitio Web" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setWeb(event.target.value)}}/>
+                <TextField multiline={true} label="Nombre" className={classes.txt} style={{ marginTop: 0}} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setNombre(event.target.value)}}/>
+                <TextField multiline={true} label="Direccion" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setDireccion(event.target.value)}}/>
+                <TextField multiline={true} label="Telefono" type="number" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setTelefono(event.target.value)}}/>
+                <TextField multiline={true} label="Correo Electronico" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setMail(event.target.value)}}/>
+                <TextField multiline={true} label="Director" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setDirector(event.target.value)}}/>
+                <TextField multiline={true} label="Ideologia" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setIdeologia(event.target.value)}}/>
+                <TextField multiline={true} label="Publicaciones" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setPublicaciones(event.target.value)}}/>
+                <TextField multiline={true} label="Instagram" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setInsta(event.target.value)}}/>
+                <TextField multiline={true} label="Twitter" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setTwit(event.target.value)}}/>
+                <TextField multiline={true} label="Facebook" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setFb(event.target.value)}}/>
+                <TextField multiline={true} label="Sitio Web" className={classes.txt} onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setWeb(event.target.value)}}/>
                 <FormControl component="fieldset" className={classes.txt}>
                     <FormLabel component="legend">Investigación</FormLabel>
                     <FormGroup>
@@ -82,14 +110,6 @@ export default function CreateOngPage(props:any) {
                         />
                     </FormGroup>
                 </FormControl>
-
-                {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                    <KeyboardDatePicker disableToolbar variant="inline" format="dd/MM/yyyy" margin="normal" 
-                        label="Fecha de Creacion" KeyboardButtonProps={{ 'aria-label': 'change date', }}  
-                        onChange={(date: Date | null) => { setSelectedDate(date)}} value={selectedDate}/>
-                </MuiPickersUtilsProvider> */}
-
-                
                 <div style={{marginTop:'5%'}}>
                     <Button variant="contained" color="primary" style={{ marginLeft:'1%',marginRight:'1%'}} onClick={create} > Crear </Button>
                     <Button variant="contained" color="secondary" style={{ float: 'right' , marginRight: '1%'}} onClick={()=>{ props.history.replace("/ong")}} > Cancelar </Button>

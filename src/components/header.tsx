@@ -7,8 +7,8 @@ import { clearOngs } from "../actions/Ong.actions";
 import { RootState } from "../store/store";
 
 const navLinks = [
-    { title: `Semaforo`, path: `/semaforo` },
     { title: `ONGs`, path: `/ong` },
+    { title: `Redes`, path: `/semaforo` },
     { title: `Reportes`, path: `/reportes` },
     { title: `Usuarios`, path: `/users` },
 ]

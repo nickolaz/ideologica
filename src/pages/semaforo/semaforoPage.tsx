@@ -35,10 +35,10 @@ export default function SemaforoPage (props:any) {
     const columns: any[] = [
         { field: 'id', headerName: 'id', width: 90 },
         { field: 'ong', headerName: 'ONG', width: 200 },
-        { field: 'ideologia', headerName: 'Ideologia', width: 200 },
-        { field: 'publicaciones', headerName: 'Publicaciones', width: 250  },
+        // { field: 'ideologia', headerName: 'Ideologia', width: 200 },
+        // { field: 'publicaciones', headerName: 'Publicaciones', width: 250  },
         { field: 'relacion', headerName: 'Relacion con otra ONG', width: 280 },
-        { field: 'investigacion', headerName: 'Investigacion', width: 450 },
+        // { field: 'investigacion', headerName: 'Investigacion', width: 450 },
     ];
 
     const handleCancel = () => {
@@ -53,9 +53,7 @@ export default function SemaforoPage (props:any) {
 
     const requestSearch = (searchedVal: string) => {
         const filteredRows = semaforos.filter((row) => {
-            let search = row?.ong?.toLowerCase().includes(searchedVal.toLowerCase()) || row?.ideologia?.toLowerCase().includes(searchedVal.toLowerCase()) ||
-                row?.publicaciones?.toLowerCase().includes(searchedVal.toLowerCase()) || row?.relacion?.toLowerCase().includes(searchedVal.toLowerCase()) || 
-                row?.investigacion?.toLowerCase().includes(searchedVal.toLowerCase());
+            let search = row?.ong?.toLowerCase().includes(searchedVal.toLowerCase()) || row?.relacion?.toLowerCase().includes(searchedVal.toLowerCase());
             return search;
         });
         setRowSemaforo(filteredRows);
@@ -70,7 +68,7 @@ export default function SemaforoPage (props:any) {
         <div style={{width: '100%'}}>
             <Header history={props.history}/>
             <h2 style={{display:'flex',fontSize:'3rem',marginBottom:'auto'}}>
-                <b style={{marginRight:'auto',marginLeft:'auto'}}>Semaforos</b>
+                <b style={{marginRight:'auto',marginLeft:'auto'}}>Redes</b>
             </h2>
             <Snackbar open={err} autoHideDuration={6000} onClose={handleClose}>
                 <MuiAlert elevation={6} variant="filled" onClose={handleClose} severity="error">
@@ -94,7 +92,7 @@ export default function SemaforoPage (props:any) {
                     <Button variant="contained" color="primary" style={{marginLeft:'1%',marginRight:'1%'}} disabled={row==null} onClick={()=>{
                         props.history.replace("/semaforo/view",row?.data);
                     }}> Ver </Button>
-                    <Button variant="contained" color="secondary" style={{ float: 'right' , marginRight: '1%'}} disabled={row==null} onClick={()=> setOpen(true)}> Eliminar </Button>
+                    {/* <Button variant="contained" color="secondary" style={{ float: 'right' , marginRight: '1%'}} disabled={row==null} onClick={()=> setOpen(true)}> Eliminar </Button> */}
                 </div>
             }
             { tipoLogeado === 'O' &&

@@ -65,7 +65,7 @@ export const createOngs = (ong : any) => {
 export const deleteOngs = (ong : any) => {
     return (dispatch: Dispatch, getState : () => RootState) => {
         const {home} = getState();
-        API.post(AppConfig.apiBaseUrl+`ong/delete`,{ong : ong.nombre},{ headers: getAuthHeaders(home.token)})
+        API.post(AppConfig.apiBaseUrl+`ong/delete`,{ong : ong.ong},{ headers: getAuthHeaders(home.token)})
         .then(
             (resp: AxiosResponse<any>) => {
                 dispatch({
